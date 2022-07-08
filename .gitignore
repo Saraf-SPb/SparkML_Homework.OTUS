@@ -1,0 +1,9 @@
+/project/project/target/
+/project/target/
+/target/*
+/target/
+/target/scala-2.12/
+/target/streams/
+target/*
+target
+.idea*
