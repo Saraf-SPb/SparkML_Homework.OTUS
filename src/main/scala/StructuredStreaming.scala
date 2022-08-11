@@ -1,7 +1,7 @@
 import org.apache.spark.sql.SparkSession
-import service.{IrisModelTraining, IrisStreaming}
+import service.{IrisModelTraining, IrisStructuredStreaming}
 
-object Main extends App {
+object StructuredStreaming extends App {
 
   val spark = SparkSession.builder()
     .appName("SparkML_Homework")
@@ -20,10 +20,11 @@ object Main extends App {
     val irisModelTraining = new IrisModelTraining(spark, training_path)
     irisModelTraining.training(iris_libsvm_file_name, model_path)
   }
-  val irisStreaming = new IrisStreaming(spark,
+  val irisStreaming = new IrisStructuredStreaming(spark,
     model_path,
     kafka_bootstrap_server_url,
     kafka_topic_output,
     kafka_topic_input)
+
   irisStreaming.runStream()
 }
